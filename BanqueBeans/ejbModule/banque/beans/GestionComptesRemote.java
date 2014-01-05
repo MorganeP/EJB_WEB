@@ -15,6 +15,8 @@ public interface GestionComptesRemote {
 	
 	public void supprimerCompte(Compte c);
 
-	public List<Compte> getComptes();	
+	public List<Compte> getComptes();
+	public boolean effectuerRetrait(Compte compte, double montant);
+	public boolean effectuerDepot(Compte compte, double montant);
 	
 }

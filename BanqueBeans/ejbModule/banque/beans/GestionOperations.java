@@ -36,6 +36,11 @@ public class GestionOperations implements GestionOperationsRemote, GestionOperat
 			//Compte old=manager.find(Compte.class,compte.getNumeroCompte());
 			Compte old=manager.find(Compte.class,compte.getId());
 			if (old!=null){
+				
+				Class classe=old.getClass();
+				if(classe.getName().equals("CompteEpargne")){
+					
+				}
 				//si operation est un retrait
 				if(o.isRetrait()) {
 					if(compte.retrait(o.getMontant())){  // pas de sauvegarde si le retrait n'est pas possible

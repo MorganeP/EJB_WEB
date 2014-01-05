@@ -36,7 +36,7 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
 	public Compte ajouterCompte(Compte c) throws ClientNullException {
 		if(client!=null){
 			c.setTitulaire(client);
-			manager.persist(c);
+			manager.persist(c);//enregistrement dans la BDD
 			return c;
 		}
 		else{
@@ -59,6 +59,18 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
 	public List<Compte> getComptes() {
 		comptes = manager.createQuery("Select c from Compte c").getResultList();
 		return comptes;
+	}
+
+	@Override
+	public boolean effectuerRetrait(Compte compte, double montant) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean effectuerDepot(Compte compte, double montant) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	

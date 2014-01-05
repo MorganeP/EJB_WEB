@@ -73,8 +73,8 @@ public class Client implements Serializable {
 	public void setComptes(List<Compte> comptes) {
 		this.comptes = comptes;
 	}
-	public void addCompte(Compte c){
-		comptes.add(c);
-	}
+//	public void addCompte(Compte c){
+//		comptes.add(c);
+//	}
    
 }
