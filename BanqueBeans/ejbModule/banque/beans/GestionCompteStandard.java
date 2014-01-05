@@ -10,8 +10,6 @@ import javax.persistence.PersistenceContext;
 import banque.entites.CompteStandard;
 import banque.entites.Operation;
 import banque.entites.TypeOperation;
-import banque.interfaceBeans.GestionCompteStandardLocal;
-import banque.interfaceBeans.GestionCompteStandardRemote;
 
 /**
  * Session Bean implementation class GestionCompteStandard

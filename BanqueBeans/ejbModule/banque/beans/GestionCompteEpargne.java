@@ -11,8 +11,6 @@ import banque.entites.CompteEpargne;
 import banque.entites.CompteStandard;
 import banque.entites.Operation;
 import banque.entites.TypeOperation;
-import banque.interfaceBeans.GestionCompteEpargneLocal;
-import banque.interfaceBeans.GestionCompteEpargneRemote;
 
 /**
  * Session Bean implementation class GestionCompteEpargne

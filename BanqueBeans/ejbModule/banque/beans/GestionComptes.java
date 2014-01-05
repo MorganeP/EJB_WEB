@@ -14,8 +14,6 @@ import banque.entites.Client;
 import banque.entites.Compte;
 import banque.entites.Operation;
 import banque.entites.TypeOperation;
-import banque.interfaceBeans.GestionComptesLocal;
-import banque.interfaceBeans.GestionComptesRemote;
 
 /**
  * Session Bean implementation class GestionComptes

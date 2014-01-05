@@ -1,10 +1,8 @@
-package banque.interfaceBeans;
+package banque.beans;
 import java.util.List;
 
 import javax.ejb.Remote;
 
-import banque.beans.ClientNullException;
-import banque.beans.CompteInconnuException;
 import banque.entites.Client;
 import banque.entites.Compte;
 

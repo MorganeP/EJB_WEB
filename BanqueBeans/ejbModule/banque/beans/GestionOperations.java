@@ -9,8 +9,6 @@ import javax.persistence.PersistenceContext;
 
 import banque.entites.Compte;
 import banque.entites.Operation;
-import banque.interfaceBeans.GestionOperationsLocal;
-import banque.interfaceBeans.GestionOperationsRemote;
 
 /**
  * Session Bean implementation class GestionOperations

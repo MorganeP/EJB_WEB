@@ -1,18 +1,19 @@
 import java.util.Hashtable;
+import java.util.Random;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
 import banque.beans.ClientNullException;
 import banque.beans.CompteNullException;
+import banque.beans.GestionClientsRemote;
+import banque.beans.GestionCompteStandardRemote;
+import banque.beans.GestionComptesRemote;
+import banque.beans.GestionOperationsRemote;
 import banque.entites.Client;
 import banque.entites.CompteEpargne;
 import banque.entites.ComptePlatine;
 import banque.entites.CompteStandard;
-import banque.interfaceBeans.GestionClientsRemote;
-import banque.interfaceBeans.GestionCompteStandardRemote;
-import banque.interfaceBeans.GestionComptesRemote;
-import banque.interfaceBeans.GestionOperationsRemote;
 
 
 public class Main {
@@ -63,17 +64,23 @@ public class Main {
 			
 	
 			CompteStandard compteA = new CompteStandard();
-			compteA.setNumeroCompte("0000001");
+			Random r = new Random();
+			int valeur = 1000 + r.nextInt(100000 - 1000);
+			compteA.setNumeroCompte("0000001"+valeur);
 			compteA.setPenalite(5);
 			compteA.setSolde(1000);
 			
 			ComptePlatine compteB = new ComptePlatine();
-			compteB.setNumeroCompte("0000002");
+			r=new Random();
+			valeur = 1000 + r.nextInt(100000 - 1000);
+			compteB.setNumeroCompte("0000002"+valeur);
 			compteB.setDecouvert(500);
 			compteB.setSolde(1000);	
 			
 			CompteEpargne compteC = new CompteEpargne();
-			compteC.setNumeroCompte("0000003");
+			r=new Random();
+			valeur = 1000 + r.nextInt(100000 - 1000);
+			compteC.setNumeroCompte("0000003"+valeur);
 			compteC.setSolde(1000);
 			compteC.setTaux(0.1);
 			

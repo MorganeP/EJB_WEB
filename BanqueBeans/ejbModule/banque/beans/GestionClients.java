@@ -7,8 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import banque.entites.Client;
-import banque.interfaceBeans.GestionClientsLocal;
-import banque.interfaceBeans.GestionClientsRemote;
 
 /**
  * Session Bean implementation class GestionClients
