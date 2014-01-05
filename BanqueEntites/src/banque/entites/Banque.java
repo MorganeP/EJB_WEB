@@ -30,5 +30,37 @@ public class Banque implements Serializable {
 	public Banque() {
 		super();
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public Set<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
+	}
+
+	public Set<Conseiller> getConseillers() {
+		return conseillers;
+	}
+
+	public void setConseillers(Set<Conseiller> conseillers) {
+		this.conseillers = conseillers;
+	}
    
 }
