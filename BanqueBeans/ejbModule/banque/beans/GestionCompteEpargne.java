@@ -19,8 +19,8 @@ public class GestionCompteEpargne implements GestionCompteEpargneRemote, Gestion
 
 	@Override
 	public void ajouterInteret(CompteEpargne compteEpargne) {
-		// TODO Auto-generated method stub
-		
+//		double interets = (taux*solde);
+//		solde = solde + interets;
 	}
 
 }

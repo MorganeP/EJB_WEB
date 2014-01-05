@@ -27,9 +27,9 @@ public class CompteEpargne extends Compte implements Serializable {
 		this.taux = taux;
 	}
 	
-	public void crediterInterets(){
-		double interets = (taux*solde);
-		solde = solde + interets;
-	}
+//	public void crediterInterets(){
+//		double interets = (taux*solde);
+//		solde = solde + interets;
+//	}
    
 }

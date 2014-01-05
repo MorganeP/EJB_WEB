@@ -1,6 +1,7 @@
 package banque.entites;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -17,7 +18,7 @@ public class Operation implements Serializable {
 	
 	@ManyToOne
 	private Compte compte;
-	
+	private Date date;
 	private boolean retrait;
 	private double montant;
 	private static final long serialVersionUID = 1L;
@@ -53,6 +54,14 @@ public class Operation implements Serializable {
 	}
 	public void setMontant(double montant) {
 		this.montant = montant;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
    
 }

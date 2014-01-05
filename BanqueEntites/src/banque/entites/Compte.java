@@ -64,17 +64,17 @@ public class Compte implements Serializable {
 		this.operations.add(operation);
 	}
 	
-	public void depot(double montant){
-		solde = solde + montant;
-	}
-	public boolean retrait(double montant){
-		double nouveauSolde = solde - montant;
-		if(nouveauSolde>(double)0){
-			solde = nouveauSolde;
-			return true;
-		}
-		else return false;
-	}
+//	public void depot(double montant){
+//		solde = solde + montant;
+//	}
+//	public boolean retrait(double montant){
+//		double nouveauSolde = solde - montant;
+//		if(nouveauSolde>(double)0){
+//			solde = nouveauSolde;
+//			return true;
+//		}
+//		else return false;
+//	}
 	public int getId() {
 		return id;
 	}

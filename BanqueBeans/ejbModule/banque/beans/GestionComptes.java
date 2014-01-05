@@ -1,5 +1,7 @@
 package banque.beans;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -10,6 +12,7 @@ import javax.persistence.PersistenceContext;
 
 import banque.entites.Client;
 import banque.entites.Compte;
+import banque.entites.Operation;
 
 /**
  * Session Bean implementation class GestionComptes
@@ -61,16 +64,51 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
 		return comptes;
 	}
 
+
 	@Override
 	public boolean effectuerRetrait(Compte compte, double montant) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean result=false;
+		Compte c=manager.find(Compte.class, compte.getId());
+		if(c!=null){
+			double solde=c.getSolde()-montant;
+			if(solde>=0){
+				c.setSolde(solde);
+				Operation m=new Operation();
+				m.setCompte(c);
+				m.setDate(new Date());
+				m.setMontant(montant);
+				m.setRetrait(true);;
+				List<Operation> historique=c.getOperations();
+				historique.add(m);
+				c.setOperations(historique);
+				manager.persist(c);
+				result=true;
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public boolean effectuerDepot(Compte compte, double montant) {
 		// TODO Auto-generated method stub
-		return false;
+		boolean result=false;
+		Compte c=manager.find(Compte.class, compte.getId());
+		if(c!=null){
+			double solde=c.getSolde()+montant;
+			c.setSolde(solde);
+			Operation o=new Operation();
+			o.setCompte(c);
+			o.setDate(new Date());
+			o.setMontant(montant);
+			o.setRetrait(true);
+			List<Operation> historique=c.getOperations();
+			historique.add(o);
+			c.setOperations(historique);
+			manager.persist(c);
+			result=true;
+		}
+		return result;
 	}
 	
 	

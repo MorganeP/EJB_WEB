@@ -27,17 +27,17 @@ public class ComptePlatine extends Compte implements Serializable {
 		this.decouvert = decouvert;
 	}
 	
-	public void depot(double montant){
-		solde = solde + montant;
-	}
-	public boolean retrait(double montant){
-		double nouveauSolde = solde - montant;
-		if(nouveauSolde>(((double)0)-decouvert)){
-			solde = nouveauSolde;
-			return true;
-		}
-		else return false;
-	}
+//	public void depot(double montant){
+//		solde = solde + montant;
+//	}
+//	public boolean retrait(double montant){
+//		double nouveauSolde = solde - montant;
+//		if(nouveauSolde>(((double)0)-decouvert)){
+//			solde = nouveauSolde;
+//			return true;
+//		}
+//		else return false;
+//	}
 	
    
 }

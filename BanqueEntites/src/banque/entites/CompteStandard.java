@@ -27,14 +27,14 @@ public class CompteStandard extends Compte implements Serializable {
 		this.penalite = penalite;
 	}
 	
-	public boolean retrait(double montant){
-		double nouveauSolde = solde - montant - penalite;
-		if(nouveauSolde>(double)0){
-			solde = nouveauSolde;
-			return true;
-		}
-		else return false;
-	}
+//	public boolean retrait(double montant){
+//		double nouveauSolde = solde - montant - penalite;
+//		if(nouveauSolde>(double)0){
+//			solde = nouveauSolde;
+//			return true;
+//		}
+//		else return false;
+//	}
 	
    
 }
