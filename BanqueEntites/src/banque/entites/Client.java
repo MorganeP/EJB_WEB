@@ -24,7 +24,11 @@ public class Client implements Serializable {
 	
 	@OneToMany(mappedBy="titulaire", cascade = ALL) 
 	private List<Compte> comptes;
+	@ManyToOne
+	private Conseiller conseiller;
 	
+	@ManyToOne
+	private Banque banque;
 	
 	public Client() {
 		super();
@@ -76,5 +80,21 @@ public class Client implements Serializable {
 //	public void addCompte(Compte c){
 //		comptes.add(c);
 //	}
+
+	public Conseiller getConseiller() {
+		return conseiller;
+	}
+
+	public void setConseiller(Conseiller conseiller) {
+		this.conseiller = conseiller;
+	}
+
+	public Banque getBanque() {
+		return banque;
+	}
+
+	public void setBanque(Banque banque) {
+		this.banque = banque;
+	}
    
 }
