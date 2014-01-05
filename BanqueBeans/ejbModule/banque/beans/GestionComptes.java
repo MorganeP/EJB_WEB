@@ -13,6 +13,9 @@ import javax.persistence.PersistenceContext;
 import banque.entites.Client;
 import banque.entites.Compte;
 import banque.entites.Operation;
+import banque.entites.TypeOperation;
+import banque.interfaceBeans.GestionComptesLocal;
+import banque.interfaceBeans.GestionComptesRemote;
 
 /**
  * Session Bean implementation class GestionComptes
@@ -78,7 +81,7 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
 				m.setCompte(c);
 				m.setDate(new Date());
 				m.setMontant(montant);
-				m.setRetrait(true);;
+				m.setType(TypeOperation.Retrait);
 				List<Operation> historique=c.getOperations();
 				historique.add(m);
 				c.setOperations(historique);
@@ -101,7 +104,7 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
 			o.setCompte(c);
 			o.setDate(new Date());
 			o.setMontant(montant);
-			o.setRetrait(true);
+			o.setType(TypeOperation.Dépôt);
 			List<Operation> historique=c.getOperations();
 			historique.add(o);
 			c.setOperations(historique);

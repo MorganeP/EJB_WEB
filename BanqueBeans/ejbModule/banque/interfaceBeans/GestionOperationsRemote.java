@@ -1,4 +1,4 @@
-package banque.beans;
+package banque.interfaceBeans;
 
 import java.util.List;
 

@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import banque.beans.ClientInconnu;
 import banque.beans.GestionClients;
-import banque.beans.GestionClientsRemote;
-import banque.beans.GestionComptesRemote;
-import banque.beans.GestionOperationsRemote;
 import banque.entites.Client;
+import banque.interfaceBeans.GestionClientsRemote;
+import banque.interfaceBeans.GestionComptesRemote;
+import banque.interfaceBeans.GestionOperationsRemote;
 
 /**
  * Servlet implementation class index

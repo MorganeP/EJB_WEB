@@ -1,4 +1,4 @@
-package banque.beans;
+package banque.interfaceBeans;
 
 import javax.ejb.Local;
 

@@ -5,13 +5,14 @@ import javax.naming.InitialContext;
 
 import banque.beans.ClientNullException;
 import banque.beans.CompteNullException;
-import banque.beans.GestionClientsRemote;
-import banque.beans.GestionComptesRemote;
-import banque.beans.GestionOperationsRemote;
 import banque.entites.Client;
 import banque.entites.CompteEpargne;
 import banque.entites.ComptePlatine;
 import banque.entites.CompteStandard;
+import banque.interfaceBeans.GestionClientsRemote;
+import banque.interfaceBeans.GestionCompteStandardRemote;
+import banque.interfaceBeans.GestionComptesRemote;
+import banque.interfaceBeans.GestionOperationsRemote;
 
 
 public class Main {
@@ -43,7 +44,7 @@ public class Main {
 			GestionClientsRemote gestionClientsRemote = (GestionClientsRemote)context.lookup("Banque/BanqueBeans/GestionClients!banque.beans.GestionClientsRemote");
 			GestionComptesRemote gestionComptesRemote = (GestionComptesRemote)context.lookup("Banque/BanqueBeans/GestionComptes!banque.beans.GestionComptesRemote");
 			GestionOperationsRemote gestionOperationsRemote = (GestionOperationsRemote)context.lookup("Banque/BanqueBeans/GestionOperations!banque.beans.GestionOperationsRemote");
-		
+			GestionCompteStandardRemote gestionComptesStandardRemote=(GestionCompteStandardRemote)context.lookup("Banque/BanqueBeans/GestionCompteStandard!banque.beans.GestionCompteStandardRemote");
 			Client client1 = new Client();
 			client1.setLogin("Morgane");
 			client1.setPassword("morgane");
@@ -91,18 +92,22 @@ public class Main {
 			catch( ClientNullException e){
 				e.printStackTrace();}
 			
-			banque.entites.Operation op1 = new banque.entites.Operation();
-			op1.setRetrait(false);
-			op1.setMontant(300);
+			//operation sur un comtpe standard
+			gestionComptesStandardRemote.effectuerRetrait(compteA, 10);
+			gestionComptesRemote.effectuerDepot(compteA, 200);
 			
-			banque.entites.Operation op2 = new banque.entites.Operation();
-			op2.setRetrait(true);
-			op2.setMontant(50.2);
-
-//			try {
-			gestionOperationsRemote.choisirCompte(compteA);
-			op1 = gestionOperationsRemote.ajouterOperation(op1);
-			op2 = gestionOperationsRemote.ajouterOperation(op2);
+//			banque.entites.Operation op1 = new banque.entites.Operation();
+//			op1.setRetrait(false);
+//			op1.setMontant(300);
+//			
+//			banque.entites.Operation op2 = new banque.entites.Operation();
+//			op2.setRetrait(true);
+//			op2.setMontant(50.2);
+//
+////			try {
+//			gestionOperationsRemote.choisirCompte(compteA);
+//			op1 = gestionOperationsRemote.ajouterOperation(op1);
+//			op2 = gestionOperationsRemote.ajouterOperation(op2);
 //			}
 //			catch( CompteNullException e){e.printStackTrace();}
 			

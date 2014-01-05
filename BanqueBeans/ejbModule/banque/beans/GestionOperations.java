@@ -1,12 +1,16 @@
 package banque.beans;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import banque.entites.Compte;
 import banque.entites.Operation;
+import banque.interfaceBeans.GestionOperationsLocal;
+import banque.interfaceBeans.GestionOperationsRemote;
 
 /**
  * Session Bean implementation class GestionOperations
@@ -31,38 +35,38 @@ public class GestionOperations implements GestionOperationsRemote, GestionOperat
 	}
 
 	public Operation ajouterOperation(Operation o){  // throws CompteInconnuException {
-		if(compte!=null){
-			//ancienne version 
-			//Compte old=manager.find(Compte.class,compte.getNumeroCompte());
-			Compte old=manager.find(Compte.class,compte.getId());
-			if (old!=null){
-				
-				Class classe=old.getClass();
-				if(classe.getName().equals("CompteEpargne")){
-					
-				}
-				//si operation est un retrait
-				if(o.isRetrait()) {
-					if(compte.retrait(o.getMontant())){  // pas de sauvegarde si le retrait n'est pas possible
-						manager.merge(compte);
-						o.setCompte(compte);
-						manager.persist(o);
-					};
-				}
-				//autrement depot
-				else{
-					compte.depot(o.getMontant());
-					manager.merge(compte);
-					o.setCompte(compte);
-					manager.persist(o);
-				}
-			}
+//		if(compte!=null){
+//			//ancienne version 
+//			//Compte old=manager.find(Compte.class,compte.getNumeroCompte());
+//			Compte old=manager.find(Compte.class,compte.getId());
+//			if (old!=null){
+//				
+//				Class classe=old.getClass();
+//				if(classe.getName().equals("CompteEpargne")){
+//					
+//				}
+//				//si operation est un retrait
+//				if(o.isRetrait()) {
+//					if(compte.retrait(o.getMontant())){  // pas de sauvegarde si le retrait n'est pas possible
+//						manager.merge(compte);
+//						o.setCompte(compte);
+//						manager.persist(o);
+//					};
+//				}
+//				//autrement depot
+//				else{
+//					compte.depot(o.getMontant());
+//					manager.merge(compte);
+//					o.setCompte(compte);
+//					manager.persist(o);
+//				}
+//			}
 			return o;
-		}
-		else{
-			return null;
-//			throw new CompteInconnuException();
-		}
+//		}
+//		else{
+//			return null;
+////			throw new CompteInconnuException();
+//		}
 	}
 
 //	Modifiable ??

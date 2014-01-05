@@ -1,9 +1,10 @@
-package banque.beans;
+package banque.interfaceBeans;
 
 import java.util.List;
 
 import javax.ejb.Remote;
 
+import banque.beans.ClientInconnu;
 import banque.entites.Client;
 
 @Remote

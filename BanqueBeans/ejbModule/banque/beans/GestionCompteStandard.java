@@ -9,6 +9,9 @@ import javax.persistence.PersistenceContext;
 
 import banque.entites.CompteStandard;
 import banque.entites.Operation;
+import banque.entites.TypeOperation;
+import banque.interfaceBeans.GestionCompteStandardLocal;
+import banque.interfaceBeans.GestionCompteStandardRemote;
 
 /**
  * Session Bean implementation class GestionCompteStandard
@@ -32,20 +35,28 @@ public class GestionCompteStandard implements GestionCompteStandardRemote, Gesti
 		CompteStandard c=em.find(CompteStandard.class, compteStandard.getId());
 		if(c!=null){
 			double solde=c.getSolde()-montant-c.getPenalite();
+			//si compte non débiteur
 			if(solde>=0){
-				c.setSolde(solde);
-				Operation o=new Operation();
-				o.setCompte(c);
-				o.setDate(new Date());
-				o.setMontant(montant);
-				o.setRetrait(true);;
-				List<Operation> historique=c.getOperations();
-				historique.add(o);
-				c.setOperations(historique);
-				em.persist(c);
-				result=true;
+				c.setSolde(solde+c.getPenalite());
 			}
-		}
+			//si compte débiteur
+			else if(solde<0){
+				c.setSolde(solde);	
+			}
+			
+			Operation o=new Operation();
+			o.setCompte(c);
+			o.setDate(new Date());
+			o.setMontant(montant);
+			o.setType(TypeOperation.Retrait);
+			List<Operation> historique=c.getOperations();
+			historique.add(o);
+			c.setOperations(historique);
+			em.persist(c);
+			result=true;
+			}
+
+		
 		return result;
 	}
 

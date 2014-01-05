@@ -9,6 +9,9 @@ import javax.persistence.PersistenceContext;
 
 import banque.entites.ComptePlatine;
 import banque.entites.Operation;
+import banque.entites.TypeOperation;
+import banque.interfaceBeans.GestionComptePlatineLocal;
+import banque.interfaceBeans.GestionComptePlatineRemote;
 
 /**
  * Session Bean implementation class GestionComptePlatine
@@ -37,7 +40,7 @@ public class GestionComptePlatine implements GestionComptePlatineRemote, Gestion
 				o.setCompte(c);
 				o.setDate(new Date());
 				o.setMontant(montant);
-				o.setRetrait(true);
+				o.setType(TypeOperation.Retrait);
 				List<Operation> historique=c.getOperations();
 				historique.add(o);
 				c.setOperations(historique);
