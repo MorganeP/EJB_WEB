@@ -67,11 +67,12 @@ public class index extends HttpServlet {
 			//TODO verification que le client existe
 			//TODO faire methode Post plutôt que get
 			
+			
 			try {
 				Client a=gestionClientsRemote.verifierClient(login,password);
 				 vueFinale = "accueil_client.jsp";
 			} catch (ClientInconnu e) {
-				
+				vueFinale="erreur.jsp";
 			}
 			
 			request.getRequestDispatcher(vueFinale).forward(request, response);			
