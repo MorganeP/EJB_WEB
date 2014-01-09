@@ -1,10 +1,12 @@
 package banque.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Remote;
 
 import banque.entites.Client;
+import banque.entites.Compte;
 
 @Remote
 public interface GestionClientsRemote {
@@ -20,5 +22,7 @@ public interface GestionClientsRemote {
 	public void modifierClient(Client client) throws ClientInconnu;
     
 	public Client verifierClient(String login,String password) throws ClientInconnu;
+	
+	public List<Compte> listeComptes(Client client);
 
 }

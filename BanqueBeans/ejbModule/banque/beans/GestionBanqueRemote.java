@@ -14,11 +14,11 @@ public interface GestionBanqueRemote {
 
 		public List<Banque> getListeBanque();
 
-		public void retirerBanque(Banque banque);
+		public void supprimerBanque(Banque banque);
 
-		public Banque findBanque(String login);
+		public Banque findBanque(int id);
 
-		public void modifierBanque(Banque banque) ;
+		public void modifierBanque(Banque banque) throws BanqueInconnu ;
 	    
 
 }

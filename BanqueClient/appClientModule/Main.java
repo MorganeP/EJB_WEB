@@ -6,14 +6,18 @@ import javax.naming.InitialContext;
 
 import banque.beans.ClientNullException;
 import banque.beans.CompteNullException;
+import banque.beans.GestionBanqueRemote;
 import banque.beans.GestionClientsRemote;
 import banque.beans.GestionCompteStandardRemote;
 import banque.beans.GestionComptesRemote;
+import banque.beans.GestionConseillerRemote;
 import banque.beans.GestionOperationsRemote;
+import banque.entites.Banque;
 import banque.entites.Client;
 import banque.entites.CompteEpargne;
 import banque.entites.ComptePlatine;
 import banque.entites.CompteStandard;
+import banque.entites.Conseiller;
 
 
 public class Main {
@@ -46,18 +50,37 @@ public class Main {
 			GestionComptesRemote gestionComptesRemote = (GestionComptesRemote)context.lookup("Banque/BanqueBeans/GestionComptes!banque.beans.GestionComptesRemote");
 			GestionOperationsRemote gestionOperationsRemote = (GestionOperationsRemote)context.lookup("Banque/BanqueBeans/GestionOperations!banque.beans.GestionOperationsRemote");
 			GestionCompteStandardRemote gestionComptesStandardRemote=(GestionCompteStandardRemote)context.lookup("Banque/BanqueBeans/GestionCompteStandard!banque.beans.GestionCompteStandardRemote");
+			GestionBanqueRemote gestionBanqueRemote=(GestionBanqueRemote)context.lookup("Banque/BanqueBeans/GestionBanque!banque.beans.GestionBanqueRemote");
+			GestionConseillerRemote gestionConseillersRemote=(GestionConseillerRemote)context.lookup("Banque/BanqueBeans/GestionConseiller!banque.beans.GestionConseillerRemote");
+			
+			Banque banque=new Banque();
+			banque.setNom("LCL");
+			banque=gestionBanqueRemote.ajouterBanque(banque);//ajout à la BDD
+			
+			Conseiller conseiller=new Conseiller();
+			conseiller.setBanque(banque);
+			conseiller.setNom("Jacque");
+			conseiller.setMdp("Jacque");
+			conseiller=gestionConseillersRemote.ajouterConseiller(conseiller);
+			
 			Client client1 = new Client();
 			client1.setLogin("Morgane");
 			client1.setPassword("morgane");
 			client1.setNom("PICARISI");
 			client1.setPrenom("Morgane");
+			client1.setBanque(banque);
+			client1.setConseiller(conseiller);
+			
 			client1 = gestionClientsRemote.ajouterClient(client1);
 			
+			;
 			Client client2 = new Client();
 			client2.setLogin("Zlatan");
 			client2.setPassword("zlatan");
 			client2.setNom("Zlatan");
 			client2.setPrenom("Ibrahimovic");
+			client2.setConseiller(conseiller);
+			
 			client2 = gestionClientsRemote.ajouterClient(client2);
 			
 			

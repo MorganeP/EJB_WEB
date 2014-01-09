@@ -111,6 +111,12 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
 		}
 		return result;
 	}
+
+	@Override
+	public Compte recupererCompte(int id) {
+	
+		return manager.find(Compte.class, id);
+	}
 	
 	
 

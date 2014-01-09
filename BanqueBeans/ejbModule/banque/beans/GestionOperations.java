@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import banque.entites.Compte;
 import banque.entites.Operation;
@@ -87,6 +88,14 @@ public class GestionOperations implements GestionOperationsRemote, GestionOperat
 	public List<Operation> getOperations() {
 		operations = manager.createQuery("Select o from Operation o").getResultList();
 		return operations;
+	}
+
+	@Override
+	public List<Operation> getOperations(Compte compte) {
+		Query query = manager.createQuery("SELECT operation FROM Operation AS operation , Compte AS compte WHERE operation.compte.id = :id_compte");
+		query.setParameter("id_compte",compte.getId());
+		List<Operation> comptes=query.getResultList();
+		return  comptes;
 	}
 
 }

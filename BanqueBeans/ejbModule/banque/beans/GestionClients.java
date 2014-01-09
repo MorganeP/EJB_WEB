@@ -1,12 +1,15 @@
 package banque.beans;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import banque.entites.Client;
+import banque.entites.Compte;
 
 /**
  * Session Bean implementation class GestionClients
@@ -76,6 +79,15 @@ public class GestionClients implements GestionClientsRemote, GestionClientsLocal
 				throw new ClientInconnu();
 		}
 		return client;
+	}
+
+	@Override
+	public List<Compte> listeComptes(Client client) {
+		//Query query = manager.createQuery("select c from Compte c where c.titulaire_id=:id_client");
+		Query query = manager.createQuery("SELECT compte FROM Compte AS compte , Client AS client WHERE compte.titulaire.id = :id_client");
+		query.setParameter("id_client",client.getId());
+		List<Compte> comptes=query.getResultList();
+		return  comptes;
 	}
     
 

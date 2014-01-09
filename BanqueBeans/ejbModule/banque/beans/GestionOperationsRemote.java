@@ -22,5 +22,6 @@ public interface GestionOperationsRemote {
 	public Operation findOperation(int id);
 
 	public List<Operation> getOperations();
+	public List<Operation> getOperations(Compte compte);
 
 }
