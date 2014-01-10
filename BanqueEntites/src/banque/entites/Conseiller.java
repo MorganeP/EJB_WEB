@@ -1,7 +1,9 @@
 package banque.entites;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -24,7 +26,7 @@ public class Conseiller implements Serializable {
 	private Banque banque;	
 	
 	@OneToMany(mappedBy="conseiller",fetch=FetchType.EAGER)
-	private Set<Client> clients = new HashSet<Client>();
+	private List<Client> clients = new ArrayList<Client>();
 	
 	private static final long serialVersionUID = 1L;
 
@@ -32,11 +34,11 @@ public class Conseiller implements Serializable {
 		super();
 	}
 
-	public Set<Client> getClients() {
+	public List<Client> getClients() {
 		return clients;
 	}
 
-	public void setClients(Set<Client> clients) {
+	public void setClients(List<Client> clients) {
 		this.clients = clients;
 	}
 

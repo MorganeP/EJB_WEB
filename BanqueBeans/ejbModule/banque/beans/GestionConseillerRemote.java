@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import banque.entites.Banque;
+import banque.entites.Client;
 import banque.entites.Conseiller;
 
 @Remote
@@ -17,5 +18,8 @@ public interface GestionConseillerRemote {
 
 		public void modifierConseiller(Conseiller conseiller) throws ConseillerInconnu ;
 	    
+		public List<Client> getListeClient(Conseiller conseiller);
+
+		Conseiller verifierConseiller(String nom, String password) throws PersonneInconnu;
 
 }

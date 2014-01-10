@@ -19,9 +19,9 @@ public interface GestionClientsRemote {
 
 	public Client findClient(String login);
 
-	public void modifierClient(Client client) throws ClientInconnu;
+	public void modifierClient(Client client) throws PersonneInconnu;
     
-	public Client verifierClient(String login,String password) throws ClientInconnu;
+	public Client verifierClient(String login,String password) throws PersonneInconnu;
 	
 	public List<Compte> listeComptes(Client client);
 

@@ -12,18 +12,45 @@
 
 <form action="index" method="GET">
 	  Login: <input type="text" name="login"><br>
-	  password: <input type="password" name="password"><br>
-	  <input type="radio" name="sex" value="male">Male<br>
-	  <input type="radio" name="sex" value="female">Female
+	  password: <input type="password" name="password"><br><br>
+	  <input type="radio" name="type" value="conseiller">Conseiller
+	  <input type="radio" name="type" value="client" checked>Client
+	  <input type="radio" name="type" value="admin" >Admin
+	  <br><br><br>
 	  <input type="submit" name="action" value="identification">
 </form>
-
+<div style="display:inline-block;border:1px black solid;padding:10px;">
 <h3>Client</h3>
 <p>login:Morgane</p>
 <p>mdp:morgane</p>
+<p>action:</p>
+<ul>
+	<li>consultation comptes</li>
+	<li>consultation de l'historique des opérations</li>
+</ul>
+</div>
+<div style="display:inline-block;border:1px black solid;padding:10px;">
 <h3>Conseiller</h3>
-<p>login:Morgane</p>
-<p>mdp:morgane</p>
- 
+<p>login:Jacque</p>
+<p>mdp:Jacque</p>
+ <ul>
+	<li>consultation des différents Clients</li>
+	<li>consultation des comptes</li>
+	<li>consultation de l'historique</li>
+</ul>
+</div>
+<div style="display:inline-block;border:1px black solid;padding:10px;">
+<h3>Admin</h3>
+<p>login:admin</p>
+<p>mdp:admin</p>
+ <ul>
+ 	<li>consultation des différentes Banques</li>
+	<li>consultation des différents Conseillers</li>
+	<li>possibilité d'ajouter Conseiller</li>
+	<li>consultation des différents Clients</li>
+	<li>consultation des comptes</li>
+	<li>consultation de l'historique</li>
+</ul>
+</div>
 </body>
 </html>

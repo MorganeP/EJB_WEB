@@ -58,15 +58,15 @@ public class GestionClients implements GestionClientsRemote, GestionClientsLocal
 		return client;
 	}
 
-	public void modifierClient(Client client) throws ClientInconnu {
+	public void modifierClient(Client client) throws PersonneInconnu {
 		client=manager.find(Client.class,client.getId());
 		if (client!=null)
 			manager.merge(client);
-		else throw new ClientInconnu();
+		else throw new PersonneInconnu();
 	}
 
 	@Override
-	public Client verifierClient(String login, String password)throws ClientInconnu {
+	public Client verifierClient(String login, String password)throws PersonneInconnu {
 		Client client = null;
 		if( login!=null){
 			List<Client> liste = getListeClients();
@@ -76,7 +76,7 @@ public class GestionClients implements GestionClientsRemote, GestionClientsLocal
 				}
 			}
 			if(client==null)
-				throw new ClientInconnu();
+				throw new PersonneInconnu();
 		}
 		return client;
 	}

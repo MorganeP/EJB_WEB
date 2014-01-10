@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.naming.Context;
@@ -15,13 +16,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import banque.beans.ClientInconnu;
+import banque.beans.PersonneInconnu;
 import banque.beans.GestionClients;
 import banque.beans.GestionClientsRemote;
 import banque.beans.GestionComptesRemote;
+import banque.beans.GestionConseillerRemote;
 import banque.beans.GestionOperationsRemote;
 import banque.entites.Client;
 import banque.entites.Compte;
+import banque.entites.Conseiller;
 import banque.entites.Operation;
 
 /**
@@ -34,6 +37,9 @@ public class index extends HttpServlet {
 	GestionClientsRemote gestionClientsRemote;
 	@EJB
 	GestionComptesRemote gestionComptesRemote;
+
+	@EJB
+	GestionConseillerRemote gestionConseillersRemote;
 	@EJB
 	GestionOperationsRemote gestionOperationsRemote;
 	
@@ -53,10 +59,12 @@ public class index extends HttpServlet {
 		
 		//TODO sdsd
 		String action = request.getParameter("action");
+		String type_client = request.getParameter("type");
 		String vueFinale="index.jsp";//par défaut on renvoie sur la page d'accueil
 		if ("identification".equals(action)) {
 			String password=request.getParameter("password");
 			String login = request.getParameter("login");
+			if("client".equals(type_client)){
 			
 			//TODO faire methode Post plutôt que get
 			
@@ -68,10 +76,22 @@ public class index extends HttpServlet {
 				request.getSession().setAttribute("comptes",comptes);
 				 vueFinale = "accueil_client.jsp";
 				 
-			} catch (ClientInconnu e) {
+			} catch (PersonneInconnu e) {
 				vueFinale="erreur.jsp";
 			}
-			
+			}
+			else if("conseiller".equals(type_client)){
+				try {
+					Conseiller c=gestionConseillersRemote.verifierConseiller(login,password);
+					List <Client> clients_conseiller= c.getClients();
+					request.getSession().setAttribute("conseiller",c);
+					request.getSession().setAttribute("clients_conseiller",clients_conseiller);
+					 vueFinale = "accueil_conseiller.jsp";
+					 
+				} catch (PersonneInconnu e) {
+					vueFinale="erreur.jsp";
+				}
+			}
 					
 		}
 		else if(action.startsWith("historique")){

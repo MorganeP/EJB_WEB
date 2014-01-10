@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import banque.entites.Banque;
+import banque.entites.Client;
 import banque.entites.Conseiller;
 
 /**
@@ -47,5 +48,27 @@ public class GestionConseiller implements GestionConseillerRemote, GestionConsei
 			manager.merge(conseiller);
 		else throw new ConseillerInconnu();
 	}
+
+	@Override
+	public List<Client> getListeClient(Conseiller conseiller) {
+		
+		return null;
+	}
+	@Override
+	public Conseiller verifierConseiller(String nom, String password)throws PersonneInconnu {
+		Conseiller conseiller = null;
+		if( nom!=null){
+			List<Conseiller> liste = getListeConseiller();
+			for( Conseiller c: liste){
+				if(c.getNom().equals(nom)&&c.getMdp().equals(password)){
+					conseiller = c;
+				}
+			}
+			if(conseiller==null)
+				throw new PersonneInconnu();
+		}
+		return conseiller;
+	}
+
 
 }
