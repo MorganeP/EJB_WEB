@@ -51,13 +51,13 @@ public class index extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-
+		//TODO sdsd
 		String action = request.getParameter("action");
 		String vueFinale="index.jsp";//par défaut on renvoie sur la page d'accueil
-		if ("identi".equals(action)) {
+		if ("identification".equals(action)) {
 			String password=request.getParameter("password");
 			String login = request.getParameter("login");
-			//TODO verification que le client existe
+			
 			//TODO faire methode Post plutôt que get
 			
 			

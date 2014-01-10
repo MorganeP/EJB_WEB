@@ -13,7 +13,17 @@
 <form action="index" method="GET">
 	  Login: <input type="text" name="login"><br>
 	  password: <input type="password" name="password"><br>
-	  <input type="submit" name="action" value="identi">
-</form> 
+	  <input type="radio" name="sex" value="male">Male<br>
+	  <input type="radio" name="sex" value="female">Female
+	  <input type="submit" name="action" value="identification">
+</form>
+
+<h3>Client</h3>
+<p>login:Morgane</p>
+<p>mdp:morgane</p>
+<h3>Conseiller</h3>
+<p>login:Morgane</p>
+<p>mdp:morgane</p>
+ 
 </body>
 </html>

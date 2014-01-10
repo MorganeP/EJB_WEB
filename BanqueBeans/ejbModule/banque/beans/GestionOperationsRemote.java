@@ -12,7 +12,7 @@ public interface GestionOperationsRemote {
 
 	public void choisirCompte(Compte c);
 
-	public Operation ajouterOperation(Operation o); // throws CompteInconnuException;
+	public Operation ajouterOperation(Operation o,Compte c); // throws CompteInconnuException;
 		
 //	Modifiable ??
 //	public void modifierOperation(Operation o);

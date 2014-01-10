@@ -33,39 +33,10 @@ public class GestionOperations implements GestionOperationsRemote, GestionOperat
 		compte = c;
 	}
 
-	public Operation ajouterOperation(Operation o){  // throws CompteInconnuException {
-//		if(compte!=null){
-//			//ancienne version 
-//			//Compte old=manager.find(Compte.class,compte.getNumeroCompte());
-//			Compte old=manager.find(Compte.class,compte.getId());
-//			if (old!=null){
-//				
-//				Class classe=old.getClass();
-//				if(classe.getName().equals("CompteEpargne")){
-//					
-//				}
-//				//si operation est un retrait
-//				if(o.isRetrait()) {
-//					if(compte.retrait(o.getMontant())){  // pas de sauvegarde si le retrait n'est pas possible
-//						manager.merge(compte);
-//						o.setCompte(compte);
-//						manager.persist(o);
-//					};
-//				}
-//				//autrement depot
-//				else{
-//					compte.depot(o.getMontant());
-//					manager.merge(compte);
-//					o.setCompte(compte);
-//					manager.persist(o);
-//				}
-//			}
+	public Operation ajouterOperation(Operation o,Compte c){  // throws CompteInconnuException {
+
 			return o;
-//		}
-//		else{
-//			return null;
-////			throw new CompteInconnuException();
-//		}
+
 	}
 
 //	Modifiable ??
