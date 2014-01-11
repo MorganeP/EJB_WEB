@@ -26,6 +26,7 @@
 <p>action:</p>
 <ul>
 	<li>consultation comptes</li>
+	<li>effectuer retrait/dépôts</li>
 	<li>consultation de l'historique des opérations</li>
 </ul>
 </div>

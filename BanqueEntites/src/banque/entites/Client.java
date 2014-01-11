@@ -1,9 +1,13 @@
 package banque.entites;
 import static javax.persistence.CascadeType.ALL;
+
 import java.io.Serializable;
 import java.lang.String;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.*;
+
 import static javax.persistence.FetchType.EAGER;
 
 
@@ -22,8 +26,8 @@ public class Client implements Serializable {
 	private String password;
 	private static final long serialVersionUID = 1L;
 	
-	@OneToMany(mappedBy="titulaire", cascade = ALL) 
-	private List<Compte> comptes;
+	@OneToMany(mappedBy="titulaire",fetch=FetchType.EAGER, cascade = ALL) 
+	private Set<Compte> comptes;
 	@ManyToOne
 	private Conseiller conseiller;
 	
@@ -71,10 +75,10 @@ public class Client implements Serializable {
 		this.password = password;
 	}
 
-	public List<Compte> getComptes() {
+	public Set<Compte> getComptes() {
 		return comptes;
 	}
-	public void setComptes(List<Compte> comptes) {
+	public void setComptes(Set<Compte> comptes) {
 		this.comptes = comptes;
 	}
 //	public void addCompte(Compte c){

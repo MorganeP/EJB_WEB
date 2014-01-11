@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ page import="banque.entites.Operation" %>
+        <%@ page import="banque.entites.Compte" %>
     <%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,12 +20,15 @@
  <TH>Montant </TH> 
   </TR> 
  <%
-List<Operation> operations = (List) request.getSession().getAttribute("compte_operation");
+ 
+ Compte c=(Compte) request.getSession().getAttribute("compte_historique");
+ List<Operation> operations_comptes=c.getOperations();
+
 %>
 <%
 
 
-for(Operation operation:operations){
+for(Operation operation:operations_comptes){
 	%>
 	<TR> 
 	<td><%=operation.getId()%></td>

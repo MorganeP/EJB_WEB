@@ -84,7 +84,7 @@ public class GestionClients implements GestionClientsRemote, GestionClientsLocal
 	@Override
 	public List<Compte> listeComptes(Client client) {
 		//Query query = manager.createQuery("select c from Compte c where c.titulaire_id=:id_client");
-		Query query = manager.createQuery("SELECT compte FROM Compte AS compte , Client AS client WHERE compte.titulaire.id = :id_client");
+		Query query = manager.createQuery("SELECT DISTINCT compte FROM Compte AS compte , Client AS client WHERE compte.titulaire.id = :id_client");
 		query.setParameter("id_client",client.getId());
 		List<Compte> comptes=query.getResultList();
 		return  comptes;
