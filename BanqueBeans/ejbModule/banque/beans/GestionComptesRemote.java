@@ -9,9 +9,10 @@ import banque.entites.Compte;
 @Remote
 public interface GestionComptesRemote {
 
-	public void choisirClient(Client c);
 
-	public Compte ajouterCompte(Compte c) throws ClientNullException;
+
+	public Compte ajouterCompte(Compte c,Client client) throws ClientNullException;
+	public Compte ajouterCompte(Compte c) ;
 
 	public void modifierCompte(Compte compte) throws CompteInconnuException;
 	

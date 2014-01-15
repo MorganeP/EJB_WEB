@@ -17,7 +17,7 @@ public interface GestionClientsRemote {
 
 	public void retirerClient(Client client);
 
-	public Client findClient(String login);
+	public Client findClient(int id_client);
 
 	public void modifierClient(Client client) throws PersonneInconnu;
     

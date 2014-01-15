@@ -59,8 +59,8 @@ public class GestionClients implements GestionClientsRemote, GestionClientsLocal
 	}
 
 	public void modifierClient(Client client) throws PersonneInconnu {
-		client=manager.find(Client.class,client.getId());
-		if (client!=null)
+		Client cli=manager.find(Client.class,client.getId());
+		if (cli!=null)
 			manager.merge(client);
 		else throw new PersonneInconnu();
 	}

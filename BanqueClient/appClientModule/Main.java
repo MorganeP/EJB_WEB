@@ -57,11 +57,21 @@ public class Main {
 			banque.setNom("LCL");
 			banque=gestionBanqueRemote.ajouterBanque(banque);//ajout à la BDD
 			
+			Banque banqueb=new Banque();
+			banqueb.setNom("BNP");
+			banqueb=gestionBanqueRemote.ajouterBanque(banqueb);//ajout à la BDD
+			
 			Conseiller conseiller=new Conseiller();
 			conseiller.setBanque(banque);
 			conseiller.setNom("Jacque");
 			conseiller.setMdp("Jacque");
 			conseiller=gestionConseillersRemote.ajouterConseiller(conseiller);
+			
+			Conseiller conseillerb=new Conseiller();
+			conseillerb.setBanque(banqueb);
+			conseillerb.setNom("Tahiti Bob");
+			conseillerb.setMdp("Tahiti");
+			conseillerb=gestionConseillersRemote.ajouterConseiller(conseillerb);
 			
 			Client client1 = new Client();
 			client1.setLogin("Morgane");
@@ -73,13 +83,14 @@ public class Main {
 			
 			client1 = gestionClientsRemote.ajouterClient(client1);
 			
-			;
+			
 			Client client2 = new Client();
+			client2.setBanque(banqueb);
 			client2.setLogin("Zlatan");
 			client2.setPassword("zlatan");
 			client2.setNom("Zlatan");
 			client2.setPrenom("Ibrahimovic");
-			client2.setConseiller(conseiller);
+			client2.setConseiller(conseillerb);
 			
 			client2 = gestionClientsRemote.ajouterClient(client2);
 			
@@ -108,39 +119,25 @@ public class Main {
 			compteC.setTaux(0.1);
 			
 			try {
-			gestionComptesRemote.choisirClient(client1);
-			compteA = (CompteStandard) gestionComptesRemote.ajouterCompte(compteA);
-			compteB = (ComptePlatine) gestionComptesRemote.ajouterCompte(compteB);
+			compteA = (CompteStandard) gestionComptesRemote.ajouterCompte(compteA,client1);
+			compteB = (ComptePlatine) gestionComptesRemote.ajouterCompte(compteB,client1);
 			}
 			catch( ClientNullException e){
 				e.printStackTrace();}
 			
 			try {
-			gestionComptesRemote.choisirClient(client2);
-			compteC = (CompteEpargne) gestionComptesRemote.ajouterCompte(compteC);
+			compteC = (CompteEpargne) gestionComptesRemote.ajouterCompte(compteC,client2);
 			}
+			
 			catch( ClientNullException e){
-				e.printStackTrace();}
+				e.printStackTrace();
+			}
 			
 			//operation sur un comtpe standard
 			gestionComptesStandardRemote.effectuerRetrait(compteA, 10);
 			gestionComptesRemote.effectuerDepot(compteA, 200);
 			
-//			banque.entites.Operation op1 = new banque.entites.Operation();
-//			op1.setRetrait(false);
-//			op1.setMontant(300);
-//			
-//			banque.entites.Operation op2 = new banque.entites.Operation();
-//			op2.setRetrait(true);
-//			op2.setMontant(50.2);
-//
-////			try {
-//			gestionOperationsRemote.choisirCompte(compteA);
-//			op1 = gestionOperationsRemote.ajouterOperation(op1);
-//			op2 = gestionOperationsRemote.ajouterOperation(op2);
-//			}
-//			catch( CompteNullException e){e.printStackTrace();}
-			
+
 			
 			System.out.println("Done !");
 			

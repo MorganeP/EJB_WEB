@@ -29,7 +29,9 @@ public class GestionConseiller implements GestionConseillerRemote, GestionConsei
 		manager.persist(c);
 		return c;
 	}
-
+	public Conseiller findConseiller(int id) {
+		return manager.find(Conseiller.class,id);
+	}
 	@Override
 	public List<Conseiller> getListeConseiller() {
 		return manager.createQuery("Select c from Conseiller c").getResultList();
@@ -43,8 +45,8 @@ public class GestionConseiller implements GestionConseillerRemote, GestionConsei
 
 	@Override
 	public void modifierConseiller(Conseiller conseiller) throws ConseillerInconnu {
-		conseiller=manager.find(Conseiller.class,conseiller.getId());
-		if (conseiller!=null)
+		Conseiller conseilold=manager.find(Conseiller.class,conseiller.getId());
+		if (conseilold!=null)
 			manager.merge(conseiller);
 		else throw new ConseillerInconnu();
 	}

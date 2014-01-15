@@ -48,8 +48,8 @@ public class GestionBanque implements GestionBanqueRemote, GestionBanqueLocal {
 
 	@Override
 	public void modifierBanque(Banque banque) throws BanqueInconnu {
-		banque=manager.find(Banque.class,banque.getId());
-		if (banque!=null)
+		Banque ba=manager.find(Banque.class,banque.getId());
+		if (ba!=null)
 			manager.merge(banque);
 		else throw new BanqueInconnu();
 	}

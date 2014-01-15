@@ -11,8 +11,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Accueil Conseiller</title>
+<link rel="stylesheet" href="css/style_client.css" type="text/css"  /> 
 </head>
 <body>
+<div class="body">
  <%
 Conseiller c = (Conseiller) request.getSession().getAttribute("conseiller");
 
@@ -21,7 +23,9 @@ Conseiller c = (Conseiller) request.getSession().getAttribute("conseiller");
 %>
 <h2>Synthèse compte</h2>
 <form action="index" method="GET">
-
+<p>Nom:<%=c.getNom() %></p>
+<p>Mdp : <%=c.getMdp() %></p>
+<p> Banque : <%=c.getBanque().getNom() %></p>
   
 
 <% for(Client client:clients){
@@ -31,7 +35,7 @@ Conseiller c = (Conseiller) request.getSession().getAttribute("conseiller");
 	<h3>Client</h3>
 	<p>nom : <strong><%=client.getNom()%></strong></p>
 	<p>Prenom : <strong><%=client.getPrenom()%></strong></p>
-
+<div align="center">
 <TABLE BORDER="1"> 
   <CAPTION> Liste des Comptes </CAPTION> 
   <TR> 
@@ -48,7 +52,8 @@ Conseiller c = (Conseiller) request.getSession().getAttribute("conseiller");
 	<td><%=compte.getNumeroCompte() %></td>
 	<td><%=compte.getSolde() %></td>
 	<form action="index" method="GET">
-	<td><input name="action" type="submit" value="historique_<%=compte.getId()%>" /></td>
+<%-- 	<td><input name="action" type="submit" value="historique_<%=compte.getId()%>" /></td> --%>
+	<td><a href="index?action=historique&id=<%=compte.getId()%>" >Historique</a></td>
 	</form>
 	</TR>
 	
@@ -59,6 +64,7 @@ Conseiller c = (Conseiller) request.getSession().getAttribute("conseiller");
 }
 %> 
 </form> 
-
+</div>
+</div>
 </body>
 </html>

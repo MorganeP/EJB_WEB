@@ -19,6 +19,8 @@ public interface GestionConseillerRemote {
 		public void modifierConseiller(Conseiller conseiller) throws ConseillerInconnu ;
 	    
 		public List<Client> getListeClient(Conseiller conseiller);
+		
+		public Conseiller findConseiller(int id);
 
 		Conseiller verifierConseiller(String nom, String password) throws PersonneInconnu;
 

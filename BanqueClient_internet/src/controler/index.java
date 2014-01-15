@@ -1,5 +1,7 @@
 package controler;
 
+
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -16,12 +18,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import banque.beans.GestionBanqueRemote;
 import banque.beans.PersonneInconnu;
 import banque.beans.GestionClients;
 import banque.beans.GestionClientsRemote;
 import banque.beans.GestionComptesRemote;
 import banque.beans.GestionConseillerRemote;
 import banque.beans.GestionOperationsRemote;
+import banque.entites.Banque;
 import banque.entites.Client;
 import banque.entites.Compte;
 import banque.entites.Conseiller;
@@ -40,6 +44,8 @@ public class index extends HttpServlet {
 
 	@EJB
 	GestionConseillerRemote gestionConseillersRemote;
+	@EJB
+	GestionBanqueRemote gestionBanquesRemote;
 	@EJB
 	GestionOperationsRemote gestionOperationsRemote;
 	
@@ -61,6 +67,7 @@ public class index extends HttpServlet {
 		String action = request.getParameter("action");
 		String type_client = request.getParameter("type");
 		String vueFinale="index.jsp";//par défaut on renvoie sur la page d'accueil
+
 		if ("identification".equals(action)) {
 			String password=request.getParameter("password");
 			String login = request.getParameter("login");
@@ -96,21 +103,29 @@ public class index extends HttpServlet {
 			else if("admin".equals(type_client)){
 				if("admin".equals(login)&"admin".equals(password)){
 					vueFinale = "accueil_admin.jsp";
+					List<Banque> banques=gestionBanquesRemote.getListeBanque();
+					request.getSession().setAttribute("banque",banques);
 				}
 				else{
 					vueFinale="erreur.jsp";
+
 				}
 			}
 					
 		}
 		else if(action.startsWith("historique")){
 			//TODO operation en double alors que pas de requete EJBQL
-			int id_compte=Integer.parseInt(action.substring(11));
+//			int id_compte=Integer.parseInt(action.substring(11));
+			int id_compte=Integer.parseInt(request.getParameter("id"));
+			request.setAttribute("page_origine", "conseiller");
 			Compte a=gestionComptesRemote.recupererCompte(id_compte);
 			List <Operation> operations=gestionOperationsRemote.getOperations(a);
 			request.getSession().setAttribute("compte_historique",a);
 			request.getSession().setAttribute("compte_operation",operations);
 			vueFinale = "historique_compte.jsp";
+		}
+		else if(action.equals("retour")){
+			vueFinale = "accueil_conseiller.jsp";
 		}
 		request.getRequestDispatcher(vueFinale).forward(request, response);	
 	}

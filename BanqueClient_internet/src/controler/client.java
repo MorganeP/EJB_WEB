@@ -45,13 +45,16 @@ public class client extends HttpServlet {
 		String action = request.getParameter("action");
 		String type_client = request.getParameter("type");
 		String vueFinale="index.jsp";//par défaut on renvoie sur la page d'accueil
+		
 		 if(action.startsWith("historique")){
 			//TODO operation en double alors que pas de requete EJBQL
-			int id_compte=Integer.parseInt(action.substring(11));
+			//int id_compte=Integer.parseInt(action.substring(11));
+			 int id_compte=Integer.parseInt(request.getParameter("id"));
 			Compte a=gestionComptesRemote.recupererCompte(id_compte);
 			List <Operation> operations=gestionOperationsRemote.getOperations(a);
 			request.getSession().setAttribute("compte_historique",a);
 			request.getSession().setAttribute("compte_operation",operations);
+			request.setAttribute("page_origine", "client");
 			vueFinale = "historique_compte.jsp";
 		}
 		 else if(action.equals("effectuer opération")){
@@ -62,11 +65,11 @@ public class client extends HttpServlet {
 			 Compte b=gestionComptesRemote.recupererCompte(Integer.parseInt(id_compte));
 			 boolean a;
 			 if(operation.equals("retrait")){
-				  a=gestionComptesRemote.effectuerRetrait(b,Integer.parseInt(montant));
+				  a=gestionComptesRemote.effectuerRetrait(b,Double.parseDouble(montant));
 
 			 }
 			 else{
-				 a=gestionComptesRemote.effectuerDepot(b,Integer.parseInt(montant));
+				 a=gestionComptesRemote.effectuerDepot(b,Double.parseDouble(montant));
 			 }
 			  if(a){
 				  vueFinale="operation_conf.jsp";

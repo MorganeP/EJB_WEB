@@ -1,5 +1,7 @@
 package banque.entites;
 
+import static javax.persistence.CascadeType.ALL;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;

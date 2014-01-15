@@ -26,7 +26,7 @@ public class Client implements Serializable {
 	private String password;
 	private static final long serialVersionUID = 1L;
 	
-	@OneToMany(mappedBy="titulaire",fetch=FetchType.EAGER, cascade = ALL) 
+	@OneToMany(mappedBy="titulaire",fetch=EAGER, cascade = ALL) 
 	private Set<Compte> comptes;
 	@ManyToOne
 	private Conseiller conseiller;

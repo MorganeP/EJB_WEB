@@ -63,7 +63,7 @@ public class GestionOperations implements GestionOperationsRemote, GestionOperat
 
 	@Override
 	public List<Operation> getOperations(Compte compte) {
-		Query query = manager.createQuery("SELECT operation FROM Operation AS operation , Compte AS compte WHERE operation.compte.id = :id_compte");
+		Query query = manager.createQuery("SELECT DISTINCT operation FROM Operation AS operation , Compte AS compte WHERE operation.compte.id = :id_compte");
 		query.setParameter("id_compte",compte.getId());
 		List<Operation> comptes=query.getResultList();
 		return  comptes;

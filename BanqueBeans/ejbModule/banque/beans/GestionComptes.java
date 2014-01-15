@@ -24,7 +24,7 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
 
 	@PersistenceContext
 	EntityManager manager;
-	Client client=null;
+
 	List<Compte> comptes = new ArrayList<Compte>();
 	
     /**
@@ -33,11 +33,9 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
     public GestionComptes() {
     }
 
-    public void choisirClient(Client c) {
-		client = c;
-	}
 
-	public Compte ajouterCompte(Compte c) throws ClientNullException {
+
+	public Compte ajouterCompte(Compte c,Client client) throws ClientNullException {
 		if(client!=null){
 			c.setTitulaire(client);
 			manager.persist(c);//enregistrement dans la BDD
@@ -49,14 +47,14 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
 	}
 
 	public void modifierCompte(Compte compte) throws CompteInconnuException {
-		compte=manager.find(Compte.class,compte.getNumeroCompte());
-		if (compte!=null)
+		Compte ba=manager.find(Compte.class,compte.getId());
+		if (ba!=null)
 		manager.merge(compte);
 		else throw new CompteInconnuException();
 	}	
 	
 	public void supprimerCompte(Compte c) {
-		c = manager.find(Compte.class,c.getNumeroCompte());
+		c = manager.find(Compte.class,c.getId());
 		manager.remove(c);
 	}
 
@@ -116,6 +114,14 @@ public class GestionComptes implements GestionComptesRemote, GestionComptesLocal
 	public Compte recupererCompte(int id) {
 	
 		return manager.find(Compte.class, id);
+	}
+
+
+
+	@Override
+	public Compte ajouterCompte(Compte c)   {
+		manager.persist(c);
+		return c;
 	}
 	
 	
